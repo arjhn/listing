@@ -39,7 +39,7 @@ app.get('/',(req,res)=>{
 
 app.post('/search',bodyParser.json(),(req,res)=>{
 
-    connection.query('SELECT app,vid,source_id,overall_status,comments FROM DATA_TAB WHERE source_id LIKE "%'+req.body.searchVal+'%"',(err,rows)=>{
+    connection.query('SELECT app,vid,source_id,overall_status,comments FROM DATA_TAB WHERE '+req.body.col+' LIKE "%'+req.body.searchVal+'%"',(err,rows)=>{
         if(err) throw err
         
         let result=rows.map((mysqlObj, index) => {
